@@ -12,9 +12,9 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["NetwiseTask/NetwiseTask.csproj", "NetwiseTask/"]
+COPY ["NetwiseTask.csproj", "NetwiseTask/"]
 RUN dotnet restore "./NetwiseTask/NetwiseTask.csproj"
-COPY . .
+COPY . /src/NetwiseTask
 WORKDIR "/src/NetwiseTask"
 RUN dotnet build "./NetwiseTask.csproj" -c $BUILD_CONFIGURATION -o /app/build
 
